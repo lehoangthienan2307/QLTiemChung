@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PTTK2.KHACHHANG;
 using PTTK2.GOITIEMCHUNG;
+using PTTK2.TRUNGTAMTIEM;
+using PTTK2.PHIEUGIAODICH;
+using PTTK2.CHITIETPHIEUGIAODICH;
 
 namespace PTTK2
 {
@@ -19,6 +22,7 @@ namespace PTTK2
         private KhachHang _treEm; // người thân cảu khách hàng đang sử dụng hệ thống
 
         private List<GoiTiemChung> _goiTiemChungList = Bus_GoiTiemChung.getGoiTiemChung();
+        private List<TrungTamTiem> _trungTamTiemList = Bus_TrungTamTiem.GetTrungTamTiem();
         public DKTC(InterfaceKH interfaceKH,KhachHang kh)
         {
             _interfaceKH = interfaceKH;
@@ -28,6 +32,9 @@ namespace PTTK2
 
             loadInfoToGui();
             loadGoiTiemChungToGui();
+            loadTrungTamTiemToGui();
+
+            dateTimePicker1.Value.AddDays(2);
         }
 
         private void DKTC_FormClosing(object? sender, FormClosingEventArgs e)
@@ -35,9 +42,30 @@ namespace PTTK2
             _interfaceKH.Show();
         }
 
+        /// <summary>
+        /// Kiểm tra ngày tháng người dùng chọn có phải hợp lệ (ngày hẹn phải nằm trong tương lai)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+            DateTime dateTime = dateTimePicker1.Value.Date;
+            if(!Bus_KhachHang.isValidPickedDate(dateTime))
+            {
+                MessageBox.Show("Cannot select today or past date", "Alert");
+            }
+        }
 
+
+        /// <summary>
+        /// Lấy thông tin của trung tâm tiêm chủng và hiển thị lên gui
+        /// </summary>
+        private void loadTrungTamTiemToGui()
+        {
+            foreach (TrungTamTiem ttt in _trungTamTiemList)
+            {
+                comboBox1.Items.Add(ttt.TenTT);
+            }
         }
 
         /// <summary>
@@ -115,12 +143,76 @@ namespace PTTK2
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             _treEm = Bus_KhachHang.getChildInfo(comboBox2.Text, _kh.MaKH.ToUpper());
             if (_treEm == null) return;
+            textBox9.Text = _treEm.QuanHe;
             textBox10.Text = _treEm.SDTKH;
+
+        }
+
+
+        /// <summary>
+        /// Gọi tầng nghiệp vụ để xử lí insert thêm đơn đăng ký tiêm chủng
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // nếu người dùng không chọn trung tâm nào thì không đăng ký phiếu
+            if (comboBox1.SelectedIndex == -1)
+            {
+                MessageBox.Show("Xin hãy lựa chọn trung tâm", "Thông báo");
+                return;
+            }            
+
+            // nếu người dùng chưa chọn gói vaccine nào thì không đăng ký phiếu
+            if (!isSelectedVaccine())
+            {
+                MessageBox.Show("Xin hãy lựa chọn gói vaccine", "Thông báo");
+                return;
+            }
+
+            // người dùng muốn đăng ký tiêm cho người thân
+            if (checkBox1.Checked)
+            {
+                // gọi hàm thêm phiếu giao dịch ở tầng nghiệp vụ
+                string result = Bus_PhieuGiaoDich.insert(_trungTamTiemList[comboBox1.SelectedIndex], dateTimePicker1.Value.Date, _treEm.MaKH);
+                // nếu tạo phiếu giao dịch thành công thì sẽ trả mã phiếu giao dịch để thêm vào chi tiết phiếu giao dịch
+                if (result != null)
+                {
+                    // gọi hàm thêm chi tiết phiếu giao dịch ở tầng nghiệp vụ
+                    Bus_ChiTietPhieuGiaoDich.insert(checkedListBox1, _goiTiemChungList, _treEm.MaKH,result);
+                }
+            }
+            // đăng ký tiêm chủng cho người dùng
+            else
+            {
+                // gọi hàm thêm phiếu giao dịch ở tầng nghiệp vụ
+                string result = Bus_PhieuGiaoDich.insert(_trungTamTiemList[comboBox1.SelectedIndex], dateTimePicker1.Value.Date, _kh.MaKH);
+                if (result != null)
+                {
+                    // gọi hàm thêm chi tiết phiếu giao dịch ở tầng nghiệp vụ
+                    Bus_ChiTietPhieuGiaoDich.insert(checkedListBox1, _goiTiemChungList, _kh.MaKH,result);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra xem người dùng đã chọn gói vaccine nào chưa
+        /// </summary>
+        /// <returns></returns>
+        private bool isSelectedVaccine()
+        {
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                if (checkedListBox1.GetItemChecked(i) == true)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

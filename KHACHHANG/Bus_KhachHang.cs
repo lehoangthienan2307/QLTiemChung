@@ -29,10 +29,15 @@ namespace PTTK2.KHACHHANG
             {
                 while (reader.Read())
                 {
-                    kh  = new KhachHang(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3).ToString("dd/MM/yyyy"),
-                        reader.GetString(4), reader.GetString(5), reader.GetBoolean(6),
-                        reader[7] == DBNull.Value ? "null":reader.GetString(7), reader.GetString(8));
-               
+                    kh = new KhachHang(reader.GetString(0),
+                         reader.GetString(1),
+                         reader.GetString(2),
+                         reader.GetDateTime(3).ToString("dd/MM/yyyy"),
+                         reader.GetString(4),
+                         reader.GetString(5),
+                         reader.GetBoolean(6),
+                         reader[7] == DBNull.Value ? "null" : reader.GetString(7),
+                         reader[8] == DBNull.Value ? "null" : reader.GetString(8));
                 }
             }
             reader.Close();
@@ -92,5 +97,20 @@ namespace PTTK2.KHACHHANG
             SqlConnector._conn.Close();
             return kh;
         }
+
+        /// <summary>
+        /// Kiểm tra xem ngày hẹn có phải chọn ngày trong quá khứ hay ngày hiện tại
+        /// </summary>
+        /// <param name="d1"></param>
+        /// <returns></returns>
+        public static bool isValidPickedDate(DateTime d1)
+        {
+            if (d1<= DateTime.Now)
+            {
+                return false;
+            }
+            return true;
+        }
+
     }
 }
