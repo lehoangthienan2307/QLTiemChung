@@ -24,6 +24,7 @@ namespace PTTK2.CHITIETPHIEUGIAODICH
             {
                 insert(ch);
             }
+            SqlConnector._conn.Close();
         }
 
 
