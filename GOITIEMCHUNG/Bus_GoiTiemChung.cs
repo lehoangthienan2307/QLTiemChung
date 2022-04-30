@@ -10,6 +10,10 @@ namespace PTTK2.GOITIEMCHUNG
 {
     public class Bus_GoiTiemChung
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public static List<GoiTiemChung> getGoiTiemChung()
         {
             List<GoiTiemChung> goiTiemChung = new List<GoiTiemChung>();

@@ -1,4 +1,4 @@
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using PTTK2.KHACHHANG;
 namespace PTTK2
 {
@@ -19,11 +19,20 @@ namespace PTTK2
             Application.Exit();
         }
 
+        /// <summary>
+        /// Button đăng nhập
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             loginIdentify();
         }
 
+
+        /// <summary>
+        /// lấy thông tin trả tra từ layer nghiệp vụ để kiểm tra đăng nhập
+        /// </summary>
         private void loginIdentify()
         {
             // user is customer
@@ -32,7 +41,7 @@ namespace PTTK2
                 int isValid = Bus_KhachHang.login(textBox1.Text, textBox2.Text);
                 if (isValid == 1)
                 {
-                    MessageBox.Show("Welcome", "Notification");
+                    MessageBox.Show("Chào mừng khách hàng", "Notification");
                     // create KhachHang class on successfull login
                     KhachHang kh = Bus_KhachHang.getInfo(textBox1.Text);
 
@@ -43,13 +52,26 @@ namespace PTTK2
                 }
                 else
                 {
-                    MessageBox.Show("Failed to login", "Alert");
+                    MessageBox.Show("Đăng nhập thất bại", "Alert");
                 }
             }
             else
             {
 
             }
+        }
+
+
+        /// <summary>
+        ///  Nút đăng ký khách hàng
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DK dK = new DK(this);
+            Hide();
+            dK.Show();
         }
     }
 

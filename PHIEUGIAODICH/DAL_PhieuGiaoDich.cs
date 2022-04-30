@@ -34,6 +34,10 @@ namespace PTTK2.PHIEUGIAODICH
             return null;
         }
 
+        /// <summary>
+        /// Lấy mã phiếu giao dịch tiếp theo mới nhất
+        /// </summary>
+        /// <returns></returns>
         public static SqlDataReader getNextID()
         {
             SqlConnector._conn.Open();
