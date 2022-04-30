@@ -30,5 +30,12 @@ namespace PTTK2
         {
             _login.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Hide();
+            DKTC dktc = new DKTC(this,_kh);
+            dktc.Show();
+        }
     }
 }
