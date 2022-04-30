@@ -1,34 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Compile Update="DK.cs">
+    <Compile Update="GUI\DK.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="DKLLV.cs">
+    <Compile Update="GUI\DKLLV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="DKTC.cs">
+    <Compile Update="GUI\DKTC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="DMVC.cs">
+    <Compile Update="GUI\DMVC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="InterfaceKH.cs">
+    <Compile Update="GUI\InterfaceKH.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="InterfaceNV.cs">
+    <Compile Update="GUI\InterfaceNV.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Login.cs">
+    <Compile Update="GUI\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="TT.cs">
+    <Compile Update="GUI\TT.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="XLCN.cs">
+    <Compile Update="GUI\XLCN.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="XLLV.cs">
+    <Compile Update="GUI\XLLV.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
