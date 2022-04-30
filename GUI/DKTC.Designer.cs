@@ -243,6 +243,7 @@
             this.button1.TabIndex = 24;
             this.button1.Text = "Gửi";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label11
             // 
@@ -269,7 +270,7 @@
             this.comboBox1.Location = new System.Drawing.Point(187, 343);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(219, 23);
+            this.comboBox1.Size = new System.Drawing.Size(230, 23);
             this.comboBox1.TabIndex = 27;
             // 
             // dateTimePicker1
@@ -277,7 +278,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(187, 301);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(219, 23);
+            this.dateTimePicker1.Size = new System.Drawing.Size(230, 23);
             this.dateTimePicker1.TabIndex = 28;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
