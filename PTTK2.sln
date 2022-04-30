@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTTK2", "PTTK2\PTTK2.csproj", "{58810767-08F6-4E48-9195-0EFF61A459EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PTTK2", "PTTK2.csproj", "{AAB683F2-FC8F-4D66-9D2B-DFE60BE74475}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{58810767-08F6-4E48-9195-0EFF61A459EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58810767-08F6-4E48-9195-0EFF61A459EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58810767-08F6-4E48-9195-0EFF61A459EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58810767-08F6-4E48-9195-0EFF61A459EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAB683F2-FC8F-4D66-9D2B-DFE60BE74475}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAB683F2-FC8F-4D66-9D2B-DFE60BE74475}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAB683F2-FC8F-4D66-9D2B-DFE60BE74475}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAB683F2-FC8F-4D66-9D2B-DFE60BE74475}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
