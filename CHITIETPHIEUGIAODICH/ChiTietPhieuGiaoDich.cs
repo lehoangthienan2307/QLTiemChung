@@ -13,6 +13,12 @@ namespace PTTK2.CHITIETPHIEUGIAODICH
         private int _soLuong;
 
         //methods
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="maPhieu"></param>
+        /// <param name="maGoi"></param>
+        /// <param name="soLuong"></param>
         public ChiTietPhieuGiaoDich(string maPhieu, string maGoi, int soLuong)
         {
             MaPhieu = maPhieu;

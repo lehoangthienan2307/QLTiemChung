@@ -56,7 +56,7 @@ namespace PTTK2.KHACHHANG
         /// </summary>
         /// <param name="maKH"></param>
         /// <returns></returns>
-        public static KhachHang getInfo(string maKH)
+        public static KhachHang getKhachHang(string maKH)
         {
             KhachHang kh = null;
             SqlDataReader reader = DAL_KhachHang.getKhachHangInfo(maKH.ToUpper());
