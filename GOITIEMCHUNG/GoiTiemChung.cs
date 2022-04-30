@@ -13,6 +13,12 @@ namespace PTTK2.GOITIEMCHUNG
         private int _giaTien;
 
         //methods
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="maGoi"></param>
+        /// <param name="tenLoai"></param>
+        /// <param name="giaTien"></param>
         public GoiTiemChung(string maGoi, string tenLoai, int giaTien)
         {
             _maGoi = maGoi;

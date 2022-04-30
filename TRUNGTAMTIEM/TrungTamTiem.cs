@@ -12,6 +12,12 @@ namespace PTTK2.TRUNGTAMTIEM
         private string _maTT, _tenTT, _diaChi;
 
         // methods
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="maTT"></param>
+        /// <param name="tenTT"></param>
+        /// <param name="diaChi"></param>
         public TrungTamTiem(string maTT, string tenTT, string diaChi)
         {
             _maTT = maTT;

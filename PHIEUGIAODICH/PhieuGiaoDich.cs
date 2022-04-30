@@ -11,6 +11,16 @@ namespace PTTK2.PHIEUGIAODICH
         //attributes
         private string _maPhieu, _loaiPhieu, _trangThai, _ngayTiem, _maKH;
 
+        //methods
+        
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="maPhieu"></param>
+        /// <param name="loaiPhieu"></param>
+        /// <param name="trangThai"></param>
+        /// <param name="ngayTiem"></param>
+        /// <param name="maKH"></param>
         public PhieuGiaoDich(string maPhieu, string loaiPhieu, string trangThai, string ngayTiem, string maKH)
         {
             MaPhieu = maPhieu;

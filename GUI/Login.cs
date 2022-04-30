@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 using PTTK2.KHACHHANG;
+using PTTK2.NHANVIEN;
 namespace PTTK2
 {
     public partial class Login : Form
@@ -35,15 +36,15 @@ namespace PTTK2
         /// </summary>
         private void loginIdentify()
         {
-            // user is customer
+            // người đăng nhập chọn role khách hàng
             if (comboBox1.SelectedIndex == 0)
             {
                 int isValid = Bus_KhachHang.login(textBox1.Text, textBox2.Text);
                 if (isValid == 1)
                 {
                     MessageBox.Show("Chào mừng khách hàng", "Notification");
-                    // create KhachHang class on successfull login
-                    KhachHang kh = Bus_KhachHang.getInfo(textBox1.Text);
+                    // create KhachHang class on successful login
+                    KhachHang kh = Bus_KhachHang.getKhachHang(textBox1.Text);
 
                     InterfaceKH itfKH = new InterfaceKH(this,kh);
                     Hide();
@@ -55,9 +56,24 @@ namespace PTTK2
                     MessageBox.Show("Đăng nhập thất bại", "Alert");
                 }
             }
+            //người đăng nhập chọn role nhân viên
             else
             {
+                int isValid = Bus_NhanVien.login(textBox1.Text, textBox2.Text);
+                if (isValid == 1)
+                {
+                    MessageBox.Show("Chào mừng nhân viên", "Notification");
+                    // create NhanVien object on succesful login
+                    NhanVien nv = Bus_NhanVien.GetNhanVien(textBox1.Text);
 
+                    InterfaceNV itfNV = new InterfaceNV(this, nv);
+                    Hide();
+                    itfNV.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Đăng nhập thất bại", "Alert");
+                }
             }
         }
 
