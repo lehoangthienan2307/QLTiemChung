@@ -37,6 +37,7 @@ namespace PTTK2
                     KhachHang kh = Bus_KhachHang.getInfo(textBox1.Text);
 
                     InterfaceKH itfKH = new InterfaceKH(this,kh);
+                    Hide();
                     itfKH.Show();
 
                 }
