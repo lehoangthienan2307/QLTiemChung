@@ -36,5 +36,24 @@ namespace PTTK2.CHITIETPHIEUGIAODICH
             // gọi tầng DAL để thêm vào database
             DAL_ChiTietPhieuGiaoDich.insert(ctpgdList);
         }
+
+        public static void insertDatMua(IDictionary<GoiTiemChung, int> gioHang, string maKH, string maPhieu)
+        {
+            List<ChiTietPhieuGiaoDich> ctpgdList = new List<ChiTietPhieuGiaoDich>();
+
+            for (int i = 0; i < gioHang.Count; i++)
+            {
+                
+                ChiTietPhieuGiaoDich chiTietPhieuGiaoDich = new ChiTietPhieuGiaoDich(
+                                                                    maPhieu, gioHang.ElementAt(i).Key.MaGoi, gioHang.ElementAt(i).Value
+                                                                    );
+                ctpgdList.Add(chiTietPhieuGiaoDich);
+                
+            }
+
+
+            // gọi tầng DAL để thêm vào database
+            DAL_ChiTietPhieuGiaoDich.insert(ctpgdList);
+        }
     }
 }

@@ -34,6 +34,26 @@ namespace PTTK2.PHIEUGIAODICH
             return null;
         }
 
+        public static string insertDatMua(PhieuGiaoDich pgd)
+        {
+            SqlConnector._conn.Open();
+
+            SqlCommand command = new SqlCommand("insert into phieugiaodich(MaPhieu, LoaiPhieu, TrangThai, MaKH) values (@maPGH, @loaiPhieu,@trangThai,@maKH)", SqlConnector._conn);
+            command.Parameters.AddWithValue("maPGH", pgd.MaPhieu);
+            command.Parameters.AddWithValue("loaiPhieu", pgd.LoaiPhieu);
+            command.Parameters.AddWithValue("trangThai", pgd.TrangThai);
+            command.Parameters.AddWithValue("maKH", pgd.MaKH);
+            int row = command.ExecuteNonQuery();
+            if (row > 0)
+            {
+                MessageBox.Show("Đặt mua thành công", "Alert");
+                SqlConnector._conn.Close();
+                return pgd.MaPhieu;
+            }
+            SqlConnector._conn.Close();
+            return null;
+        }
+
         /// <summary>
         /// Lấy mã phiếu giao dịch tiếp theo mới nhất
         /// </summary>
