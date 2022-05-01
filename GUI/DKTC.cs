@@ -89,7 +89,7 @@ namespace PTTK2
             textBox3.Text = _kh.GioiTinh;
             textBox4.Text = _kh.DiaChi;
             textBox5.Text = _kh.SDTKH;
-            textBox9.Text = _kh.QuanHe;
+            //textBox9.Text = _kh.QuanHe;
 
             loadChildrenToGUI();
         }

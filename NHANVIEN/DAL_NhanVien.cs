@@ -65,6 +65,7 @@ namespace PTTK2.NHANVIEN
 
             SqlDataAdapter adapter = new SqlDataAdapter(query);
             adapter.Fill(dt);
+            SqlConnector._conn.Close();
         }
     }
 }
