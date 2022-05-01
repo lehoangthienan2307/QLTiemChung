@@ -54,6 +54,35 @@ namespace PTTK2.PHIEUGIAODICH
             return null;
         }
 
+        public static SqlDataReader getPhieuGiaoDich(string maKH)
+        {
+            SqlConnector._conn.Open();
+
+            SqlCommand command = new SqlCommand("Select * from PHIEUGIAODICH where MaKH = " + "'" + maKH + "'" + " and TrangThai != 'Đã thanh toán' ", SqlConnector._conn);
+
+            return command.ExecuteReader();
+        }
+
+        public static void updateTrangThai(string maPhieu)
+        {
+            SqlConnector._conn.Open();
+
+            SqlCommand command = new SqlCommand("update PHIEUGIAODICH set TrangThai = 'Đã thanh toán' where MaPhieu = " + "'" + maPhieu + "'" , SqlConnector._conn);
+            int row = command.ExecuteNonQuery();
+            if (row > 0)
+            {
+                MessageBox.Show("Thanh toán thành công", "Alert");
+               
+                
+            }
+            else
+            {
+                MessageBox.Show("Thanh toán thất bại", "Alert");
+            }    
+            SqlConnector._conn.Close();
+            
+        }
+
         /// <summary>
         /// Lấy mã phiếu giao dịch tiếp theo mới nhất
         /// </summary>
