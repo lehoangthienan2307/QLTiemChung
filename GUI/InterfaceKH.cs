@@ -37,5 +37,12 @@ namespace PTTK2
             DKTC dktc = new DKTC(this,_kh);
             dktc.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Hide();
+            DMVC dktc = new DMVC(this, _kh);
+            dktc.Show();
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PTTK2.TRUNGTAMTIEM;
 using PTTK2.KHACHHANG;
+using PTTK2.GOITIEMCHUNG;
 using System.Data.SqlClient;
 
 namespace PTTK2.PHIEUGIAODICH
@@ -40,6 +41,31 @@ namespace PTTK2.PHIEUGIAODICH
             else
             {
                 return result;
+            }
+        }
+
+        public static string insertDatMua(IDictionary<GoiTiemChung, int> gioHang, string maKh)
+        {
+
+            if (gioHang.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                string nextID = getNextID();
+
+                PhieuGiaoDich ph = new PhieuGiaoDich(nextID, "Đặt mua", "Chưa thanh toán", "", maKh);
+
+                string result = DAL_PhieuGiaoDich.insertDatMua(ph);
+                if (result == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return result;
+                }
             }
         }
 
