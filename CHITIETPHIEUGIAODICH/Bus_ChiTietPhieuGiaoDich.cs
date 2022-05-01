@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PTTK2.GOITIEMCHUNG;
+using System.Data;
 
 namespace PTTK2.CHITIETPHIEUGIAODICH
 {
@@ -54,6 +55,23 @@ namespace PTTK2.CHITIETPHIEUGIAODICH
 
             // gọi tầng DAL để thêm vào database
             DAL_ChiTietPhieuGiaoDich.insert(ctpgdList);
+        }
+
+        public static DataTable getChiTietPhieuGiaoDichTT(string maPhieu)
+        {
+            DataTable dt = new DataTable();
+            DAL_ChiTietPhieuGiaoDich.getChiTietPhieuGiaoDichTT(maPhieu, ref dt);
+            return dt;
+        }
+
+        public static int tinhTongTien(DataTable dt)
+        {
+            int sum = 0;
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                sum += (int)dt.Rows[i][3];
+            }
+            return sum;
         }
     }
 }

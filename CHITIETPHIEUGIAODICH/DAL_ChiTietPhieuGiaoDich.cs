@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
+
 
 
 namespace PTTK2.CHITIETPHIEUGIAODICH
@@ -44,6 +46,19 @@ namespace PTTK2.CHITIETPHIEUGIAODICH
             {
                 MessageBox.Show("Thêm chi tiết phiếu với gói vaccine " + chiTietPhieuGiaoDich.MaGoi + " thất bại!", "Thông báo");
             }
+        }
+
+        public static void getChiTietPhieuGiaoDichTT(string maPhieu, ref DataTable dt)
+        {
+            SqlConnector._conn.Open();
+
+            SqlCommand query = new SqlCommand("select ct.MaGoi, gtc.LoaiGoiTiemChung, ct.SoLuongGoi, ct.SoLuongGoi * gtc.TongTienGoi as TongTien from CHITIETPHIEUGIAODICH ct join GOITIEMCHUNG gtc on ct.MaGoi = gtc.MaGoi where ct.MaPhieu = @maPhieu"
+                                , SqlConnector._conn);
+            query.Parameters.AddWithValue("maPhieu", maPhieu);
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query);
+            adapter.Fill(dt);
+            SqlConnector._conn.Close();
         }
     }
 }

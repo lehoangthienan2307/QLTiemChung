@@ -43,7 +43,29 @@ namespace PTTK2.PHIEUGIAODICH
                 return result;
             }
         }
+        public static List<PhieuGiaoDich> getPhieuGiaoDich(string maKH)
+        {
+            List<PhieuGiaoDich> phieuGiaoDich = new List<PhieuGiaoDich>();
+            SqlDataReader reader = DAL_PhieuGiaoDich.getPhieuGiaoDich(maKH);
 
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    string ngayTiem = "";
+                    if (!reader.IsDBNull(3))
+                    {
+                        ngayTiem = reader.GetDateTime(3).ToString("dd/MM/yyyy");
+                    }
+                       
+                    PhieuGiaoDich pgd = new PhieuGiaoDich(reader.GetString(0), reader.GetString(1), reader.GetString(2), ngayTiem, reader.GetString(4));
+                    phieuGiaoDich.Add(pgd);
+                }
+            }
+            reader.Close();
+            SqlConnector._conn.Close();
+            return phieuGiaoDich;
+        }
         public static string insertDatMua(IDictionary<GoiTiemChung, int> gioHang, string maKh)
         {
 
@@ -94,6 +116,11 @@ namespace PTTK2.PHIEUGIAODICH
             // thêm 0 trước mã ID <100
             if (currentID < 100) { return "PGD0" + currentID.ToString(); }
             return "PGD"+ currentID.ToString();
+        }
+
+        public static void updateTrangThai(string maPhieu)
+        {
+            DAL_PhieuGiaoDich.updateTrangThai(maPhieu);
         }
     }
 }

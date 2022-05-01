@@ -44,5 +44,12 @@ namespace PTTK2
             DMVC dktc = new DMVC(this, _kh);
             dktc.Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Hide();
+            TT tt = new TT(this, _kh);
+            tt.Show();
+        }
     }
 }
