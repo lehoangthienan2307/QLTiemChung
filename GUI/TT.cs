@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using PTTK2.KHACHHANG;
 using PTTK2.PHIEUGIAODICH;
 using PTTK2.CHITIETPHIEUGIAODICH;
+using PTTK2.HOADON;
 
 namespace PTTK2
 {
@@ -18,6 +19,7 @@ namespace PTTK2
         private InterfaceKH _interfaceKH;
         private KhachHang _kh;
         private List<PhieuGiaoDich> _phieuGiaoDich = new List<PhieuGiaoDich>();
+        private string tongTien = "";
         DataTable dt = new DataTable();
         public TT(InterfaceKH interfaceKH, KhachHang kh)
         {
@@ -61,6 +63,7 @@ namespace PTTK2
         {
             dt = Bus_ChiTietPhieuGiaoDich.getChiTietPhieuGiaoDichTT(maPhieu);
             label8.Text= Bus_ChiTietPhieuGiaoDich.tinhTongTien(dt).ToString() + " VND";
+            tongTien = Bus_ChiTietPhieuGiaoDich.tinhTongTien(dt).ToString();
             dataGridView1.DataSource = dt;
         }
 
@@ -78,7 +81,7 @@ namespace PTTK2
             if (confirmResult == DialogResult.Yes)
             {
                 Bus_PhieuGiaoDich.updateTrangThai(_phieuGiaoDich[comboBox1.SelectedIndex].MaPhieu);
-
+                Bus_HoaDon.insert(tongTien, _phieuGiaoDich[comboBox1.SelectedIndex]);
                 loadGui();
             }
             else
