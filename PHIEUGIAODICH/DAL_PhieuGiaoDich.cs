@@ -58,7 +58,7 @@ namespace PTTK2.PHIEUGIAODICH
         {
             SqlConnector._conn.Open();
 
-            SqlCommand command = new SqlCommand("Select * from PHIEUGIAODICH where MaKH = " + "'" + maKH + "'" + " and TrangThai != 'Đã thanh toán' ", SqlConnector._conn);
+            SqlCommand command = new SqlCommand("Select * from PHIEUGIAODICH where MaKH = " + "'" + maKH + "'" + " and (TrangThai like N'Chưa thanh toán' or TrangThai like N'Trả góp')", SqlConnector._conn);
 
             return command.ExecuteReader();
         }
