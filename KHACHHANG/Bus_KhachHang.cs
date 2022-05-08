@@ -22,10 +22,11 @@ namespace PTTK2.KHACHHANG
         {
             if (isValidBornDate(dob))
             {
+                string nextID = Bus_KhachHang.getNextID();
                 KhachHang newKH = new KhachHang(null, hoTen, gioiTinh, dob.ToString("MM/dd/yyyy"), SDT, diaChi, false, null, null);
                 if (DAL_KhachHang.insert(newKH))
                 {
-                    MessageBox.Show("Đăng ký khách hàng mới thành công", "Thông báo");
+                    MessageBox.Show("Đăng ký khách hàng mới thành công\nTên đăng nhập mới là: " + nextID, "Thông báo");
                     return true;
                 }
                 else
